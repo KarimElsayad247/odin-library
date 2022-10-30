@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles/simple.css">
+  <link rel="stylesheet" href="styles/custom.css">
   <script src="scripts/script.js" defer></script>
   <title>Library</title>
 </head>
@@ -19,6 +20,27 @@
         <th>Has been read?</th>
       </tr>
     </thead>
+    <tbody>
+
+    </tbody>
   </table>
+
+  <form action="" id="new-book-form">
+    <label for="title-field">Title</label>
+    <input type="text" name="title-field" id="title-field" value="The Hobbit">
+
+    <label for="author-field">Author</label>
+    <input type="text" name="author-field" id="author-field" value="JRR Tolkien">
+
+    <label for="pages-field">Number of Pages</label>
+    <input type="number" name="pages-field" id="pages-field" value="295">
+    
+    <div class="checkbox">
+      <input type="checkbox" name="isRead-field" id="isRead-field" value="read">
+      <label for="isRead-field">Is Read?</label>
+    </div>
+
+    <input type="submit" id="add-book-button" value="Add Book">
+  </form>
 </body>
 </html>

@@ -1,5 +1,8 @@
 let myLibrary = []
 
+document.querySelector("#add-book-button")
+        .addEventListener('click', addBookToLibrary);
+
 function Book(title, author, pages) {
     this.title = title;
     this.author = author;
@@ -12,16 +15,23 @@ Book.prototype.info = function() {
            `${this.isRead ? "Has been read" : "not read yet"}`;
 }
 
-function addBookToLibrary(book) {
+function addBookToLibrary(event) {
+    event.preventDefault();
+    let book = new Book(
+        document.querySelector("#title-field").value, 
+        document.querySelector("#author-field").value, 
+        document.querySelector("#pages-field").value, 
+        
+    );
     myLibrary.push(book)
+    displayBooksInTable()
 }
 
 function displayBooksInTable() {
     let booksTable = document.querySelector(".books-container");
-    for (const book of myLibrary) {
-        let bookRow = createRow(book);
-        booksTable.appendChild(bookRow);
-    }
+    let tableBody = booksTable.querySelector("tbody")
+    let booksElems = myLibrary.map(book => createRow(book)) 
+    tableBody.replaceChildren(...booksElems)
 }
 
 function createRow(book) {
@@ -45,10 +55,3 @@ function createCell(text) {
     cell.innerText = text
     return cell;
 }
-
-let theHobbit = new Book("The Hobbit", "JRR Tolkien", 295)
-
-addBookToLibrary(theHobbit)
-displayBooksInTable()
-
-console.log(theHobbit.info());
