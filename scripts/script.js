@@ -27,17 +27,10 @@ function displayBooksInTable() {
 function createRow(book) {
     let row = document.createElement('tr');
 
-    let title = document.createElement('td');
-    title.innerText = book.title;
-
-    let author = document.createElement('td');
-    author.innerText = book.author;
-
-    let pages = document.createElement('td');
-    pages.innerText = book.pages;
-
-    let isRead = document.createElement('td');
-    isRead.innerText = book.isRead ? "Read" : "Not read";
+    let title = createCell(book.title);
+    let author = createCell(book.author);
+    let pages = createCell(book.pages);
+    let isRead = createCell(book.isRead ? "Read" : "Not read");
 
     row.appendChild(title);
     row.appendChild(author);
@@ -45,6 +38,12 @@ function createRow(book) {
     row.appendChild(isRead);
 
     return row;
+}
+
+function createCell(text) {
+    let cell = document.createElement('td');
+    cell.innerText = text
+    return cell;
 }
 
 let theHobbit = new Book("The Hobbit", "JRR Tolkien", 295)
