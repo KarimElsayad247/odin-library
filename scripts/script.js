@@ -21,8 +21,8 @@ function addBookToLibrary(event) {
         document.querySelector("#title-field").value, 
         document.querySelector("#author-field").value, 
         document.querySelector("#pages-field").value, 
-        
     );
+    book.isRead = document.querySelector("#isRead-field").checked
     myLibrary.push(book)
     displayBooksInTable()
 }
