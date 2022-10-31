@@ -15,6 +15,10 @@ Book.prototype.info = function() {
            `${this.isRead ? "Has been read" : "not read yet"}`;
 }
 
+Book.prototype.toggleRead = function() {
+    this.isRead = !this.isRead
+}
+
 // Add a book to the library with its information taken
 // from the form
 function addBookToLibrary(event) {
@@ -53,6 +57,9 @@ function createRow(book, index) {
     row.appendChild(pages);
     row.appendChild(isRead);
 
+    let toggleReadButton = createToggleReadButton(index);
+    isRead.appendChild(toggleReadButton);
+
     let buttonsCell = document.createElement('td');
     buttonsCell.appendChild(deleteButton)
     row.appendChild(buttonsCell);
@@ -80,5 +87,18 @@ function createDeleteButton(index) {
 // Delete the book with the specified index
 function deleteBook(index) {
     myLibrary.splice(index, 1);
+    displayBooksInTable();
+}
+
+function createToggleReadButton(index) {
+    let button = document.createElement('button');
+    button.textContent = "Toggle"
+    button.classList.add("toggle");
+    button.addEventListener('click', e => toggleRead(index));
+    return button;
+}
+
+function toggleRead(index) {
+    myLibrary[index].toggleRead();
     displayBooksInTable();
 }

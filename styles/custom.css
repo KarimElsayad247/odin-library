@@ -13,3 +13,11 @@ input[type="checkbox"] + label span {
 .danger:hover {
     background-color: #e11212;
 }
+
+.toggle {
+    background-color: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--accent);
+    padding: 5px;
+    margin-left: 1rem;
+}
