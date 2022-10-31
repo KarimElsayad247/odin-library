@@ -1,8 +1,15 @@
-input[type="checkbox"] + label span{
+input[type="checkbox"] + label span {
     display:inline-block;  /*SET TO DISPLAY INLINE BLOCK*/
     width:36px;
     height:36px;
     margin:-1px 4px 0 0;
     vertical-align:middle;
-    background:url(components_switches_check3.png) bottom no-repeat;
-  }
+}
+
+.danger {
+    background-color: #a10d0d;
+}
+
+.danger:hover {
+    background-color: #e11212;
+}

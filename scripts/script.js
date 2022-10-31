@@ -15,6 +15,8 @@ Book.prototype.info = function() {
            `${this.isRead ? "Has been read" : "not read yet"}`;
 }
 
+// Add a book to the library with its information taken
+// from the form
 function addBookToLibrary(event) {
     event.preventDefault();
     let book = new Book(
@@ -27,31 +29,56 @@ function addBookToLibrary(event) {
     displayBooksInTable()
 }
 
+// Displays the books contained in the globabl books array
+// inside the books table.
 function displayBooksInTable() {
     let booksTable = document.querySelector(".books-container");
     let tableBody = booksTable.querySelector("tbody")
-    let booksElems = myLibrary.map(book => createRow(book)) 
+    let booksElems = myLibrary.map((book, i) => createRow(book, i)) 
     tableBody.replaceChildren(...booksElems)
 }
 
-function createRow(book) {
+// Create a table row containing book info and buttons
+function createRow(book, index) {
     let row = document.createElement('tr');
 
     let title = createCell(book.title);
     let author = createCell(book.author);
     let pages = createCell(book.pages);
     let isRead = createCell(book.isRead ? "Read" : "Not read");
+    let deleteButton = createDeleteButton(index);
 
     row.appendChild(title);
     row.appendChild(author);
     row.appendChild(pages);
     row.appendChild(isRead);
 
+    let buttonsCell = document.createElement('td');
+    buttonsCell.appendChild(deleteButton)
+    row.appendChild(buttonsCell);
+
     return row;
 }
 
+// Creates a table cell containing supplied text
 function createCell(text) {
     let cell = document.createElement('td');
-    cell.innerText = text
+    cell.innerText = text;
     return cell;
+}
+
+// Create a button responsible for deleting the book with 
+// the particular index from the library
+function createDeleteButton(index) {
+    let button = document.createElement('button');
+    button.textContent = "Delete"
+    button.classList.add("danger");
+    button.addEventListener('click', e => deleteBook(index));
+    return button;
+}
+
+// Delete the book with the specified index
+function deleteBook(index) {
+    myLibrary.splice(index, 1);
+    displayBooksInTable();
 }
